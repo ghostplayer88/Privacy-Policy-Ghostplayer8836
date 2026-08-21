@@ -18,7 +18,7 @@
     <main class="container">
         <section class="policy-card">
             <h1>Privacy Policy</h1>
-            <p class="last-updated">Last updated: 4 August 2026</p>
+            <p class="last-updated">Last updated: 21 August 2026</p>
 
             <div class="content">
                 <h2>1. Introduction</h2>
@@ -31,6 +31,8 @@
                         <li><strong>Authentication Data:</strong> If you sign in via Google Sign-In or Google Play Games, we receive your gamer display tag/name, email, and basic profile credentials.</li>
                         <li><strong>Gameplay & Online Lobby Data:</strong> We store your real-time board states, moves, power-up usages, and matchmaking lobby statuses in our Firebase Realtime Database to deliver smooth online multiplayer.</li>
                         <li><strong>Device Tokens for Updates:</strong> Anonymous Firebase Cloud Messaging (FCM) tokens are used strictly to notify your phone when a new app update is available on Google Play.</li>
+                        <li><strong>Crash Reports &amp; Performance Data:</strong> If the app crashes or runs slowly, Firebase Crashlytics and Firebase Performance Monitoring collect the crash details, the device model and Android version, and timing information about how the app ran. This is how we find faults we cannot reproduce ourselves.</li>
+                        <li><strong>Advertising ID:</strong> Google Analytics for Firebase, which we use to understand how the app is used, has access to your device's advertising identifier. You can reset it, or opt out of personalised advertising, in your Android settings under Privacy &rsaquo; Ads.</li>
                     </ul>
                 </div>
 
@@ -44,17 +46,33 @@
                 </ul>
                 <p>We <strong>do not</strong> sell, rent, or share your personal data with third-party advertisers.</p>
 
-                <h2>4. Third-Party Services</h2>
+                <h2>4. What Other Players Can See</h2>
+                <p>Online play is not anonymous. When you host or join a match, the following is written to the shared game room and is visible to the other player, and to anyone browsing the list of open lobbies:</p>
+                <div class="neu-inset-box">
+                    <ul>
+                        <li><strong>Your display name.</strong> This is your Play Games gamer tag if you have one, otherwise the name on your Google account, otherwise the part of your email address before the @ symbol. Your full email address is never shown.</li>
+                        <li><strong>Your chosen avatar, player icon and piece set.</strong></li>
+                        <li><strong>An account identifier</strong> for you and your opponent, which the game uses to make sure only the two of you can play moves into your match.</li>
+                        <li><strong>The game itself</strong> - every move, power-up and the result.</li>
+                    </ul>
+                </div>
+                <p>Offline play against the computer sends nothing to us at all.</p>
+
+                <h2>5. How Long We Keep It</h2>
+                <p>A game room exists only while the game does. It is deleted when either player leaves, when the match ends, or if the connection drops. A lobby advertisement stops being listed once someone joins, and is removed automatically after about twenty minutes if nobody does. We do not keep a history of games you have played.</p>
+                <p>Your authentication record is kept by Google Firebase until you ask us to delete it - see below.</p>
+
+                <h2>6. Third-Party Services</h2>
                 <p>Chesstickle integrates trusted third-party Google services:</p>
                 <ul>
                     <li><a href="https://policies.google.com/privacy" target="_blank">Google Play Services & Play Games SDK</a> (Authentication & Leaderboards)</li>
-                    <li><a href="https://firebase.google.com/support/privacy" target="_blank">Google Firebase</a> (Realtime Database, Analytics, FCM Notifications)</li>
+                    <li><a href="https://firebase.google.com/support/privacy" target="_blank">Google Firebase</a> (Realtime Database, Authentication, Analytics, Crashlytics, Performance Monitoring, Remote Config and FCM Notifications)</li>
                 </ul>
 
-                <h2>5. Data Deletion & Account Erasure</h2>
+                <h2>7. Data Deletion & Account Erasure</h2>
                 <p>You have the right to request deletion of your account and associated gameplay data at any time. To request data deletion, contact the developer at the email address below.</p>
 
-                <h2>6. Contact Us</h2>
+                <h2>8. Contact Us</h2>
                 <div class="neu-inset-box">
                     <p><strong>Developer:</strong> GhostPDev</p>
                     <p><strong>Support Email:</strong> <a href="mailto:daruis.strauss@gmail.com">daruis.strauss@gmail.com</a></p>
