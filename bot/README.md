@@ -1,7 +1,7 @@
 # Multi-purpose Telegram bot
 
 Modular group bot. Modules (toggle with `MODULES` in `.env`):
-`admin`, `welcome`, `notes`, `antispam`, `fun`, `utility`, `polls`, `reminders`.
+`admin`, `welcome`, `notes`, `antispam`, `fun`, `utility`, `polls`, `reminders`, `ai`, `growth`.
 
 ## Setup
 1. Create a bot with @BotFather and copy the token.
@@ -14,3 +14,8 @@ Modular group bot. Modules (toggle with `MODULES` in `.env`):
 ## Adding a feature
 Create `modules/<name>.py` with a `HELP` string and a `register(app)` function,
 then add the name to `MODULES`.
+
+## Using it
+- **AI:** DM the bot, or in a group `/ask ...`, mention `@yourbot`, or reply to its messages. Admins set its personality with `/persona`.
+- **Growth:** members earn XP for chatting (`/rank`, `/top`) and for inviting people via `/invite`. Needs the bot to be admin with *Invite users*.
+- Set `ANTHROPIC_API_KEY` in `.env` for the AI module (API usage is billed to you).

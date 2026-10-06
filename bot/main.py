@@ -10,7 +10,7 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(message)s")
 log = logging.getLogger("bot")
 
-ALL_MODULES = "admin,welcome,notes,antispam,fun,utility,polls,reminders"
+ALL_MODULES = "admin,welcome,notes,antispam,fun,utility,polls,reminders,ai,growth"
 HELP = {}  # module name -> help text, filled by modules
 
 
@@ -35,7 +35,7 @@ def main():
         mod.register(app)
         HELP[name] = mod.HELP
         log.info("loaded module %s", name)
-    app.run_polling()
+    app.run_polling(allowed_updates=Update.ALL_TYPES)
 
 
 if __name__ == "__main__":
