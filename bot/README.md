@@ -18,4 +18,8 @@ then add the name to `MODULES`.
 ## Using it
 - **AI:** DM the bot, or in a group `/ask ...`, mention `@yourbot`, or reply to its messages. Admins set its personality with `/persona`.
 - **Growth:** members earn XP for chatting (`/rank`, `/top`) and for inviting people via `/invite`. Needs the bot to be admin with *Invite users*.
-- Set `ANTHROPIC_API_KEY` in `.env` for the AI module (API usage is billed to you).
+- **AI runs locally with Ollama** (free, no subscription or API key):
+  1. Install Ollama from https://ollama.com
+  2. `ollama pull llama3.2:3b` (8 GB RAM) or `ollama pull qwen2.5:7b` (16 GB RAM)
+  3. Set `OLLAMA_MODEL` in `.env` to match. Keep Ollama running while the bot runs.
+  The laptop must stay on for AI replies to work.

@@ -2,7 +2,7 @@ import os
 from collections import defaultdict, deque
 import time
 
-from anthropic import AsyncAnthropic
+import httpx
 from telegram import Update
 from telegram.constants import ChatAction
 from telegram.ext import CommandHandler, ContextTypes, MessageHandler, filters
@@ -14,17 +14,11 @@ HELP = (
     "🤖 AI\n/ask <question>, or mention/reply to me in a group (any message in DMs)\n"
     "/persona <text> (admin: set my personality), /resetai (clear memory)"
 )
-MODEL = os.environ.get("AI_MODEL", "claude-sonnet-5-5")
+MODEL = os.environ.get("OLLAMA_MODEL", "llama3.2:3b")
+URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
 DEFAULT_PERSONA = "You are a friendly, helpful assistant in a Telegram group. Keep answers concise."
-_client = None
 _history = defaultdict(lambda: deque(maxlen=12))  # per chat, last 12 turns
 _last = {}  # per-user rate limit
-
-
-def client():
-    global _client
-    _client = _client or AsyncAnthropic()  # reads ANTHROPIC_API_KEY
-    return _client
 
 
 async def answer(update: Update, ctx: ContextTypes.DEFAULT_TYPE, text: str):
@@ -39,14 +33,17 @@ async def answer(update: Update, ctx: ContextTypes.DEFAULT_TYPE, text: str):
     while msgs and msgs[0]["role"] != "user":
         msgs.pop(0)
     try:
-        resp = await client().messages.create(
-            model=MODEL, max_tokens=700,
-            system=storage.get(cid, "persona", DEFAULT_PERSONA), messages=msgs,
-        )
-        reply = resp.content[0].text
+        async with httpx.AsyncClient(timeout=120) as http:
+            r = await http.post(f"{URL}/api/chat", json={
+                "model": MODEL, "stream": False,
+                "messages": [{"role": "system", "content": storage.get(cid, "persona", DEFAULT_PERSONA)}] + msgs,
+                "options": {"num_predict": 500},
+            })
+            r.raise_for_status()
+            reply = r.json()["message"]["content"]
     except Exception:
         hist.pop()
-        return await update.message.reply_text("AI is unavailable right now. Try again later.")
+        return await update.message.reply_text("AI is offline right now (is Ollama running?).")
     hist.append({"role": "assistant", "content": reply})
     await update.message.reply_text(reply[:4000])
 
