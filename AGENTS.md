@@ -36,8 +36,16 @@ This folder is a **stray gitlink** inside the `chess-app` tree (mode 160000, no
 only adds noise.
 
 A second folder points at this same remote:
-`../../chess-app-website.STALE-use-privacy_repo`. **This one is the real working copy.** Do
-not push from the stale one; two copies sharing a remote is how one of them gets overwritten.
+`../../chess-app-website.STALE-use-privacy_repo`. **This folder - `privacy_repo` - is the
+real working copy. Push from here.** Two copies sharing a remote is how one of them gets
+overwritten.
+
+This paragraph used to say the opposite, that the other folder was the real one. It was
+wrong, and checked on 2026-11-18: `privacy_repo` is exactly `origin/main`, the live Pages
+site matches it, and the other clone is **10 commits behind and 1 ahead** - so a push from
+there would have reverted ten commits of the published policy. The folder is named
+`STALE-use-privacy_repo` for a reason and the root `AGENTS.md` always said the same; this
+file was the only thing disagreeing.
 
 ---
 
